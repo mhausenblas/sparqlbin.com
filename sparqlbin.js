@@ -9,7 +9,8 @@ $(document).ready(function(){
 	
 	 // check if we're not in standalone mode (on the server) and hence have to monkey patch the base URL
 	if(baseURLSPARQLBin.indexOf(":" + SPARQLBIN_SERVICE_PORT) == -1) {
-		baseURLSPARQLBin = "http://" + window.location.host + ":" + SPARQLBIN_SERVICE_PORT + "/"; 
+		// baseURLSPARQLBin = "http://" + window.location.host + ":" + SPARQLBIN_SERVICE_PORT + "/";
+		baseURLSPARQLBin =  "http://" + window.location.host  + "/";
 	}
 	else {
 		baseURLSPARQLBin =  "http://" + window.location.host  + "/";
