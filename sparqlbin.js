@@ -11,6 +11,9 @@ $(document).ready(function(){
 	if(baseURLSPARQLBin.indexOf(":" + SPARQLBIN_SERVICE_PORT) == -1) {
 		baseURLSPARQLBin = "http://" + window.location.host + ":" + SPARQLBIN_SERVICE_PORT + "/"; 
 	}
+	else {
+		baseURLSPARQLBin =  "http://" + window.location.host  + "/";
+	}
 	
 	if(currentURL.indexOf("#") != -1){ // we have a paste entry
 		$.getJSON(baseURLSPARQLBin + SPARQLBIN_PERMALINK_PATH + "/" +  currentURL.substring(currentURL.indexOf("#") + 1), function(data) {

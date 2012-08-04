@@ -27,7 +27,14 @@ from restkit import BasicAuth
 
 # Configuration
 DEBUG = False
+SERVICE_BASE = 'localhost'
 SERVICE_PORT = 6969
+
+base = SERVICE_BASE
+port = SERVICE_PORT
+couchdbserver = 'http://127.0.0.1:5984/'
+couchdbusername = 'admin'
+couchdbpassword = 'admin'
 
 if DEBUG:
 	FORMAT = '%(asctime)-0s %(levelname)s %(message)s [at line %(lineno)d]'
@@ -215,10 +222,49 @@ class SPARQLBinBackend(object):
 		except Exception as err:
 			logging.error('Error while looking up entry: %s' %err)
 			return (False, None)
-	
+
+def usage():
+	print("Usage: python sparqlbin.py -b {base} -s {serviceport} -c {couchdbserverURL} -u {couchdbUser} -p {couchdbPwd}")
+	print("Example:")
+	print("Example: python sparqlbin.py -b sparqlbin.com -s 6969 -c http://srvgal85.deri.ie:5984/ -u admin -p admin")
 
 if __name__ == '__main__':
-	from BaseHTTPServer import HTTPServer
-	server = HTTPServer(('localhost', SERVICE_PORT), SPARQLBinServer)
-	logging.info('SPARQLBinServer started on port %s, use {Ctrl+C} to shut-down ...' %SERVICE_PORT)
-	server.serve_forever()
+	try:
+		# extract and validate options and their arguments
+		print("="*80)
+		opts, args = getopt.getopt(sys.argv[1:], "hb:s:c:u:p:v", ["help", "base", "serviceport", "couchdbserver", "username", "password", "verbose"])
+		for opt, arg in opts:
+			if opt in ("-h", "--help"):
+				usage()
+				sys.exit()
+			elif opt in ("-b", "--base"):
+				base = arg
+				logging.info("Using base: %s" %base)
+			elif opt in ("-s", "--serviceport"):
+				port = int(arg)
+				logging.info("Using port: %s" %port)
+			elif opt in ("-c", "--couchdbserver"):
+				couchdbserver = arg
+				logging.info("Using CouchDB server: %s" %couchdbserver)
+			elif opt in ("-u", "--username"):
+				couchdbusername = arg
+				logging.info("Using CouchDB username: %s" %couchdbusername)
+			elif opt in ("-p", "--password"): 
+				couchdbpassword = arg
+				logging.info("Using CouchDB password: %s" %couchdbpassword)
+			elif opt in ("-v", "--verbose"): 
+				DEBUG = True
+		print("="*80)
+		from BaseHTTPServer import HTTPServer
+		server = HTTPServer((base, port), SPARQLBinServer)
+		logging.info('SPARQLBinServer started, use {Ctrl+C} to shut-down ...')
+		server.serve_forever()
+	except getopt.GetoptError, err:
+		print str(err)
+		usage()
+		sys.exit(2)	
+	
+	
+	
+	
+	
