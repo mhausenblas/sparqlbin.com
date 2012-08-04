@@ -1,4 +1,4 @@
 RewriteEngine on 
 RewriteRule ^execute$ http://140.203.155.169:6969/execute [P]
 RewriteRule ^share$ http://140.203.155.169:6969/share [P]
-RewriteRule ^q/(.*)$ http://140.203.155.169:6969/q/$1 [L]
+RewriteRule ^q/(.*)$ http://140.203.155.169:6969/q/$1 [P]
