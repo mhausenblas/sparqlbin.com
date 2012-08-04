@@ -1,12 +1,19 @@
+var SPARQLBIN_SERVICE_PORT = 6969;
 var SPARQLBIN_EXECUTEQUERY_PATH = "execute";
 var SPARQLBIN_SHAREQUERY_PATH = "share";
 var SPARQLBIN_PERMALINK_PATH = "q";
+var baseURLSPARQLBin =  window.location.href;
 
 $(document).ready(function(){
 	var currentURL = window.location.href;
 	
+	 // check if we're not in standalone mode (on the server) and hence have to monkey patch the base URL
+	if(baseURLSPARQLBin.indexOf(":" + SPARQLBIN_SERVICE_PORT) == -1) {
+		baseURLSPARQLBin = "http://" + window.location.host + ":" + SPARQLBIN_SERVICE_PORT + "/"; 
+	}
+	
 	if(currentURL.indexOf("#") != -1){ // we have a paste entry
-		$.getJSON(SPARQLBIN_PERMALINK_PATH + "/" +  currentURL.substring(currentURL.indexOf("#") + 1), function(data) {
+		$.getJSON(baseURLSPARQLBin + SPARQLBIN_PERMALINK_PATH + "/" +  currentURL.substring(currentURL.indexOf("#") + 1), function(data) {
 			$("#endpoint").val(data.endpoint);
 			$("#query").val(data.querystr);
 			addMetadata(data.timestamp, currentURL);
@@ -38,7 +45,7 @@ function shareQuery() {
 	
 	$.ajax({
 		type: "POST",
-		url: SPARQLBIN_SHAREQUERY_PATH,
+		url: baseURLSPARQLBin + SPARQLBIN_SHAREQUERY_PATH,
 		data: data,
 		dataType : "json",
 		success: function(d){
@@ -72,7 +79,7 @@ function executeQuery() {
 	
 	$.ajax({
 		type: "POST",
-		url: SPARQLBIN_EXECUTEQUERY_PATH,
+		url: baseURLSPARQLBin + SPARQLBIN_EXECUTEQUERY_PATH,
 		data: data,
 		dataType : "json",
 		success: function(d){
