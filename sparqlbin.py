@@ -256,7 +256,7 @@ if __name__ == '__main__':
 				DEBUG = True
 		print("="*80)
 		from BaseHTTPServer import HTTPServer
-		server = HTTPServer((base, port), SPARQLBinServer)
+		server = HTTPServer(('', port), SPARQLBinServer)
 		logging.info('SPARQLBinServer started, use {Ctrl+C} to shut-down ...')
 		server.serve_forever()
 	except getopt.GetoptError, err:
