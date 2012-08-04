@@ -81,7 +81,7 @@ class SPARQLBinServer(BaseHTTPRequestHandler):
 	# serves a paste entry using the backend
 	def serve_paste(self, entryid):
 		try:
-			backend = SPARQLBinBackend(serverURL = 'http://127.0.0.1:5984/' , dbname = 'sparqlbin', username = 'admin', pwd = 'admin')
+			backend = SPARQLBinBackend(serverURL = couchdbserver , dbname = 'sparqlbin', username = couchdbusername, pwd = couchdbpassword)			
 			(entry_found, entry) = backend.find(entryid)
 			
 			if entry_found:
@@ -120,7 +120,7 @@ class SPARQLBinServer(BaseHTTPRequestHandler):
 		elif postvars and target_url == 'share':
 			endpoint = urllib.unquote_plus(postvars['endpoint'][0])
 			querystr = postvars['query'][0]
-			backend = SPARQLBinBackend(serverURL = 'http://127.0.0.1:5984/' , dbname = 'sparqlbin', username = 'admin', pwd = 'admin')
+			backend = SPARQLBinBackend(serverURL = couchdbserver , dbname = 'sparqlbin', username = couchdbusername, pwd = couchdbpassword)
 			entryid = backend.add({'querystr' : querystr, 'endpoint' : endpoint })
 			self.send_response(200)
 			self.send_header('Content-type', 'application/json')
