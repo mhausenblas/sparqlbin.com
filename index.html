@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SPARQLbin.com</title>
+	<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+	<div id="menu">
+		<a href="">New...</a>
+	</div>
+	<div id="top">
+		<h1>SPARQLbin</h1>
+		<p>
+			Query SPARQL endpoints and share your results!
+		</p>
+	</div>
+	
+	<div id="main">
+		<div class="main-entry" id="query-container">
+			<h2>Query</h2>
+				<textarea id="query" rows="12" cols="60" title="Enter a valid SPARQL query here.">
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dc: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX schema: <http://schema.org/>
+
+SELECT * 
+WHERE {
+	?s ?p ?o .
+}
+LIMIT 10</textarea>
+			<p>Hint: if you're unsure about your SPARQL query, you may want to consult the <a href="http://www.w3.org/TR/rdf-sparql-query/" title="SPARQL Query Language for RDF" target="_new">SPARQL Query Language for RDF</a> specification.</p>
+		</div>
+		<div class="main-entry">
+			<h2>Endpoint URL</h2>
+			<input type="url" id="endpoint" size="100" value="http://dbpedia.org/sparql" />
+			<p>Hint: you might want to check the <a href="http://labs.mondeca.com/sparqlEndpointsStatus/" title="Public SPARQL Endpoints availability" target="_new">SPARQL Endpoints Status</a> list for availability.</p>
+		</div>
+		<div class="controls">
+			<button id="execute">Execute!</button><button id="share">Share!</button>
+		</div>
+		<div class="main-entry" id="results">
+			<h2>Results</h2>
+			<div id="permalink"></div>
+			<div id="out"></div>
+		</div>
+	</div>
+	
+	<div id="info">
+		Contact: <a href="http://github.com/mhausenblas/" target="_new">Michael Hausenblas</a> |
+		Last update: 2012-08-04 | 
+		Source: <a href="https://github.com/mhausenblas/sparqlbin.com" target="_new">GitHub repo</a> |
+		v0.0
+	</div>
+
+	<script src="jquery-1.7.2.min.js"></script>
+	<script src="json2.js"></script>
+	<script src="sparqlbin.js"></script>
+</body>
+</html>
