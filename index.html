@@ -2,7 +2,9 @@
 <html>
 <head>
 	<title>SPARQLbin.com</title>
+	<meta charset="utf-8">
 	<link rel="stylesheet" href="style.css" />
+	<link rel="shortcut icon" href="favicon.ico">
 </head>
 <body>
 	<div id="menu">
@@ -30,12 +32,12 @@ WHERE {
 	?s ?p ?o .
 }
 LIMIT 10</textarea>
-			<p>Hint: if you're unsure about your SPARQL query, you may want to consult the <a href="http://www.w3.org/TR/rdf-sparql-query/" title="SPARQL Query Language for RDF" target="_new">SPARQL Query Language for RDF</a> specification.</p>
+			<p>Hint: if you're unsure about your SPARQL query, you may want to consult the <a href="http://www.w3.org/TR/rdf-sparql-query/" title="SPARQL Query Language for RDF" target="_blank">SPARQL Query Language for RDF</a> specification.</p>
 		</div>
 		<div class="main-entry">
 			<h2>Endpoint URL</h2>
 			<input type="url" id="endpoint" size="100" value="http://dbpedia.org/sparql" />
-			<p>Hint: you might want to check the <a href="http://labs.mondeca.com/sparqlEndpointsStatus/" title="Public SPARQL Endpoints availability" target="_new">SPARQL Endpoints Status</a> list for availability.</p>
+			<p>Hint: you might want to check the <a href="http://labs.mondeca.com/sparqlEndpointsStatus/" title="Public SPARQL Endpoints availability" target="_blank">SPARQL Endpoints Status</a> list for availability.</p>
 		</div>
 		<div class="controls">
 			<button id="execute">Execute!</button><button id="share">Share!</button>
@@ -48,10 +50,15 @@ LIMIT 10</textarea>
 	</div>
 	
 	<div id="info">
-		Contact: <a href="http://github.com/mhausenblas/" target="_new">Michael Hausenblas</a> |
+		Contact: <a href="http://github.com/mhausenblas/" target="_blank">Michael Hausenblas</a> |
 		Last update: 2012-08-04 | 
-		Source: <a href="https://github.com/mhausenblas/sparqlbin.com" target="_new">GitHub repo</a> |
+		Source: <a href="https://github.com/mhausenblas/sparqlbin.com" target="_blank">GitHub repo</a> |
 		v0.0
+	</div>
+	
+	<div id="ack">
+		<a href="http://deri.ie/" title="Hosted by Digital Enterprise Research Institute (DERI)"><img src="img/deri-logo.png" alt="DERI" /></a>
+		<a href="http://latc-project.eu/" title="Partially supported by the EC FP7 Linked Open Data (LOD) Around-The-Clock Support Action"><img src="img/latc-logo.png" alt="LATC" /></a>
 	</div>
 
 	<script src="jquery-1.7.2.min.js"></script>

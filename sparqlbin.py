@@ -69,13 +69,28 @@ class SPARQLBinServer(BaseHTTPRequestHandler):
 		target_url = parsed_path.path[1:]
 		
 		# API calls
-		if self.path.startswith('/q/'): self.serve_paste(self.path.split('/')[-1])
-
-		# static stuff
-		if self.path == '/': self.serve_content('index.html')
-		if self.path.endswith('.html'): self.serve_content(target_url, media_type='text/html')
-		if self.path.endswith('.js'): self.serve_content(target_url, media_type='application/javascript')
-		if self.path.endswith('.css'): self.serve_content(target_url, media_type='text/css')
+		if self.path.startswith('/q/'):
+			self.serve_paste(self.path.split('/')[-1])
+		# static stuff (for standalone mode - typically served by Apache or nginx)
+		elif self.path == '/':
+			self.serve_content('index.html')
+		elif self.path.endswith('.ico'):
+			self.serve_content(target_url, media_type='image/x-icon')
+		elif self.path.endswith('.html'):
+			self.serve_content(target_url, media_type='text/html')
+		elif self.path.endswith('.js'):
+			self.serve_content(target_url, media_type='application/javascript')
+		elif self.path.endswith('.css'):
+			self.serve_content(target_url, media_type='text/css')
+		elif self.path.startswith('/img/'):
+			if self.path.endswith('.gif'):
+				self.serve_content(target_url, media_type='image/gif')
+			elif self.path.endswith('.png'):
+				self.serve_content(target_url, media_type='image/png')
+			else:
+				self.send_error(404,'File Not Found: %s' % target_url)
+		else:
+			self.send_error(404,'File Not Found: %s' % target_url)
 		return
 	
 	# serves a paste entry using the backend
