@@ -81,6 +81,8 @@ function executeQuery() {
 		return;
 	}
 	
+	$("#results").slideDown('200');
+	
 	$.ajax({
 		type: "POST",
 		url: baseURLSPARQLBin + SPARQLBIN_EXECUTEQUERY_PATH,
@@ -89,12 +91,10 @@ function executeQuery() {
 		success: function(d){
 			if(d) {
 				renderResults(d);
-				$("#results").slideDown('200');
 			}
 		},	
 		error:  function(msg){
 			$("#out").html("<p>There was a problem executing the query:</p><code>" + msg.responseText + "</cdoe>");
-			$("#results").slideDown('200');
 		} 
 	});
 }
