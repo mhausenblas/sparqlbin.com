@@ -20,7 +20,7 @@
 	<div id="main">
 		<div class="main-entry" id="query-container">
 			<h2>Query</h2>
-				<textarea id="query" rows="12" cols="60" title="Enter a valid SPARQL query here.">
+				<textarea id="query" rows="12" cols="65" title="Enter a valid SPARQL query here.">
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX dc: <http://purl.org/dc/terms/>
@@ -32,7 +32,8 @@ WHERE {
 	?s ?p ?o .
 }
 LIMIT 10</textarea>
-			<p>Hint: if you're unsure about your SPARQL query, you may want to consult the <a href="http://www.w3.org/TR/rdf-sparql-query/" title="SPARQL Query Language for RDF" target="_blank">SPARQL Query Language for RDF</a> specification.</p>
+			<p>Hint: if you're unsure about your SPARQL query, you may want to validate it using the 'Validate!' button below (via <a href="http://sparql.org/" title="SPARQLer - An RDF Query Server" target="_blank">sparql.org</a>) or consult the <a href="http://www.w3.org/TR/rdf-sparql-query/" title="SPARQL Query Language for RDF" target="_blank">SPARQL Query Language for RDF</a> specification.</p>
+			<button id="validate">Validate!</button>
 		</div>
 		<div class="main-entry">
 			<h2>Endpoint URL</h2>
@@ -45,7 +46,7 @@ LIMIT 10</textarea>
 		<div class="main-entry" id="results">
 			<h2>Results</h2>
 			<div id="permalink"></div>
-			<div id="out"><img src="img/busy.png" alt="busy" /></div>
+			<div id="out"><img src="img/busy.gif" alt="busy" /></div>
 		</div>
 	</div>
 	

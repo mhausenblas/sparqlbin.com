@@ -31,6 +31,10 @@ $(document).ready(function(){
 	$("#share").click(function(event){
 		shareQuery();
 	});
+	
+	$("#validate").click(function(event){
+		validateQuery();
+	});
 });
 
 // shares a SPARQL query using the SPARQLBin web service
@@ -98,6 +102,24 @@ function executeQuery() {
 		} 
 	});
 }
+
+// validates a SPARQL query using sparql.org via the SPARQLBin web service 
+function validateQuery() {
+	var validationURL = "http://sparql.org/validate/query?query=" + escape($("#query").val());
+	var validationResult = $("<iframe />", {
+		id: "validationresults",
+		src: validationURL,
+		width: "100%",
+		height: "20em"
+	});
+		
+	$("#results").slideDown('200');
+	$("#out").html("<p style='font-size: 100%; margin: 0 0 .5em 0'>Validation results provided by  <a href='http://sparql.org/' title='SPARQLer - An RDF Query Server' target='_blank'>sparql.org</a>:</p>");
+	$("#out").append(validationResult);
+}
+
+
+
 
 // renders the results
 function renderResults(data){

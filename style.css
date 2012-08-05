@@ -114,8 +114,15 @@ table td {
 	font-size: 60%;
 	color: #909090;
 	margin: 0.1em 0 0 .2em;
-	width: 80%;
+	width: 55%;
 }
+
+.main-entry button {
+	margin: 0.8em 0 0 0;
+	padding: .1em .5em;
+	font-size: 70%;
+}
+
 
 .controls {
 	margin: 1em 0 0 0;
