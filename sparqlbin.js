@@ -140,7 +140,7 @@ function renderResults(data){
 			for(rvar in data.head.vars) { // iterate over columns per row
 				var col = data.head.vars[rvar];
 				var result = data.results.bindings[entry][col].value;
-				if(result.indexOf("http") == 0) // if the result is an URI
+				if(data.results.bindings[entry][col].type == 'uri') // if the result is an URI
 					buffer += "<td><a href='" + result + "' target='_blank'>" + result + "</a></td>";
 				else
 					buffer += "<td>" + result + "</td>";
