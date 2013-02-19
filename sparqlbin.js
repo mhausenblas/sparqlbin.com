@@ -139,7 +139,11 @@ function renderResults(data){
 			else buffer += "<tr class='invrow'>";
 			for(rvar in data.head.vars) { // iterate over columns per row
 				var col = data.head.vars[rvar];
-				buffer += "<td>" + data.results.bindings[entry][col].value + "</td>";
+				var result = data.results.bindings[entry][col].value;
+				if(data.results.bindings[entry][col].type == 'uri') // if the result is an URI
+					buffer += "<td><a href='" + result + "' target='_blank'>" + result + "</a></td>";
+				else
+					buffer += "<td>" + result + "</td>";
 			}
 			buffer += "</tr>";
 		}
